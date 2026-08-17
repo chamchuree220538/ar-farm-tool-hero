@@ -1,0 +1,19 @@
+วิธีนำ AR Farm Tool Hero ขึ้นเว็บฟรีด้วย GitHub Pages
+
+1. สร้าง Repository ใหม่ใน GitHub เช่น ar-farm-tool-hero
+2. อัปโหลดไฟล์ทั้งหมดในโฟลเดอร์นี้ไว้ที่หน้าแรกของ Repository
+   - index.html
+   - targets.mind
+   - target-card1.png
+   - hoe.svg
+   - .nojekyll
+3. ไปที่ Settings > Pages
+4. Source เลือก Deploy from a branch
+5. Branch เลือก main และ /(root)
+6. กด Save
+7. รอประมาณ 1-3 นาที แล้ว GitHub จะแสดง URL ของเว็บไซต์
+8. เปิด URL นั้นบนมือถือ > อนุญาตกล้อง > ส่องการ์ด Mission 1
+
+หมายเหตุ:
+- การ์ดที่ใช้ส่องต้องเป็นภาพเดียวกับที่นำไป Compile เป็น targets.mind
+- หากหน้าเว็บเปิดได้แต่กล้องไม่ทำงาน ให้ตรวจว่าเปิดผ่าน https://

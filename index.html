@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2e7d32" />
+  <title>AR Farm Tool Hero - Mission 1</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    *{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:#0c2b19}
+    #topbar{position:fixed;z-index:20;top:0;left:0;right:0;padding:10px 12px;text-align:center;color:#fff;background:linear-gradient(180deg,rgba(20,90,46,.95),rgba(20,90,46,.75),transparent);pointer-events:none}
+    #topbar .brand{font-weight:900;font-size:18px} #topbar .sub{font-size:12px;margin-top:2px}
+    #scan-tip{position:fixed;z-index:15;left:50%;bottom:26px;transform:translateX(-50%);width:min(92vw,420px);padding:13px 16px;border-radius:18px;background:rgba(255,255,255,.96);color:#234;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25);font-weight:800}
+    #quiz{display:none;position:fixed;z-index:30;left:50%;bottom:18px;transform:translateX(-50%);width:min(94vw,520px);background:rgba(255,255,255,.97);border-radius:24px;padding:16px;box-shadow:0 16px 42px rgba(0,0,0,.35);border:3px solid #5cae55}
+    #quiz h1{margin:0 0 4px;font-size:21px;color:#21743b;text-align:center}.mission{text-align:center;font-size:13px;color:#6a5d44;margin-bottom:10px}
+    .question{background:#fff5cc;border:2px solid #f5c542;border-radius:16px;padding:12px;font-size:18px;font-weight:900;color:#2b4b74;text-align:center;line-height:1.45}
+    .answers{display:grid;gap:8px;margin-top:10px}button{appearance:none;border:0;border-radius:14px;padding:12px 14px;font-size:17px;font-weight:900;cursor:pointer;touch-action:manipulation}
+    .answer{background:#eaf7e8;color:#235d35;border:2px solid #9ad18f}.answer:active{transform:scale(.98)}#speak{width:100%;margin-top:10px;background:#e8f1ff;color:#245386;border:2px solid #9fc5f8}
+    #feedback{display:none;margin-top:10px;border-radius:14px;padding:11px 12px;text-align:center;font-size:17px;font-weight:900}
+    #feedback.correct{display:block;background:#daf5d5;color:#1d6b31;border:2px solid #75c86a}#feedback.wrong{display:block;background:#fff0db;color:#9a4d00;border:2px solid #f3b35b}
+    #retry{display:none;width:100%;margin-top:8px;background:#ffefb0;color:#6d5200;border:2px solid #f2cf43}
+    #success{display:none;position:fixed;z-index:40;left:50%;top:22%;transform:translate(-50%,-50%);background:#fff;border:4px solid #f1c232;border-radius:50%;width:155px;height:155px;align-items:center;justify-content:center;text-align:center;font-weight:900;color:#2e7d32;box-shadow:0 14px 50px rgba(0,0,0,.35);font-size:18px}
+    #success .star{font-size:52px;display:block;line-height:1}.hidden{display:none!important}a-scene{width:100%;height:100%;position:absolute;inset:0}
+  </style>
+</head>
+<body>
+  <div id="topbar"><div class="brand">🌱 AR Farm Tool Hero</div><div class="sub">ภารกิจที่ 1 : รู้จักฉันไหม?</div></div>
+  <div id="scan-tip">📷 ส่องกล้องไปที่การ์ด “ภารกิจที่ 1” ให้เต็มกรอบ</div>
+
+  <div id="quiz">
+    <h1>⭐ ภารกิจที่ 1 : รู้จักฉันไหม?</h1>
+    <div class="mission">ดูเครื่องมือ AR แล้วตอบคำถาม</div>
+    <div class="question">ฉันมีด้ามยาว ใช้พรวนและถากดิน ฉันคืออะไร?</div>
+    <button id="speak">🔊 ฟังคำใบ้</button>
+    <div class="answers">
+      <button class="answer" data-answer="A">A. จอบ</button>
+      <button class="answer" data-answer="B">B. คราด</button>
+      <button class="answer" data-answer="C">C. บัวรดน้ำ</button>
+    </div>
+    <div id="feedback"></div>
+    <button id="retry">ลองอีกครั้ง</button>
+  </div>
+
+  <div id="success"><div><span class="star">⭐</span>เก่งมาก!<br>ได้ 2 ดาว</div></div>
+
+  <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true; uiScanning: yes; uiLoading: yes; uiError: yes;"
+    color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" embedded>
+    <a-assets><img id="hoeImg" src="./hoe.svg" /></a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity id="target" mindar-image-target="targetIndex: 0">
+      <a-circle color="#fff7c2" opacity="0.82" radius="0.38" position="0 0 0.04"></a-circle>
+      <a-image src="#hoeImg" position="0 0 0.12" width="0.55" height="0.82"
+        animation="property: position; to: 0 0.055 0.18; dur: 800; easing: easeInOutSine; loop: true; dir: alternate"></a-image>
+      <a-ring color="#ffd54f" radius-inner="0.41" radius-outer="0.44" position="0 0 0.05"
+        animation="property: rotation; to: 0 0 360; dur: 7000; easing: linear; loop: true"></a-ring>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    const target=document.querySelector('#target'),quiz=document.querySelector('#quiz'),scanTip=document.querySelector('#scan-tip'),
+    feedback=document.querySelector('#feedback'),retry=document.querySelector('#retry'),success=document.querySelector('#success'),
+    answers=document.querySelectorAll('.answer'),speak=document.querySelector('#speak');
+    const clue='สวัสดีจ้า ฉันเป็นเครื่องมือการเกษตร ฉันมีด้ามยาว ใช้พรวนและถากดิน หนูรู้ไหมว่าฉันคืออะไร';
+
+    target.addEventListener('targetFound',()=>{scanTip.classList.add('hidden');quiz.style.display='block';});
+    target.addEventListener('targetLost',()=>{if(!feedback.classList.contains('correct')){quiz.style.display='none';scanTip.classList.remove('hidden');}});
+
+    function reset(){feedback.className='';feedback.style.display='none';feedback.textContent='';retry.style.display='none';answers.forEach(b=>b.disabled=false);}
+    answers.forEach(btn=>btn.addEventListener('click',()=>{
+      if(btn.dataset.answer==='A'){
+        feedback.className='correct';feedback.textContent='🎉 เก่งมาก! คำตอบถูกต้อง จอบใช้พรวนและถากดิน';
+        answers.forEach(b=>b.disabled=true);retry.style.display='none';success.style.display='flex';
+        setTimeout(()=>success.style.display='none',2200);if('vibrate'in navigator)navigator.vibrate([80,50,80]);
+      }else{
+        feedback.className='wrong';feedback.textContent='💡 ยังไม่ถูกนะ ลองสังเกตรูปร่างและหน้าที่ของเครื่องมืออีกครั้ง';
+        retry.style.display='block';if('vibrate'in navigator)navigator.vibrate(80);
+      }
+    }));
+    retry.addEventListener('click',reset);
+    speak.addEventListener('click',()=>{
+      if(!('speechSynthesis'in window)){alert(clue);return;}
+      speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(clue);u.lang='th-TH';u.rate=.88;speechSynthesis.speak(u);
+    });
+  </script>
+</body>
+</html>
