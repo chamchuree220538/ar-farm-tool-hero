@@ -1,0 +1,25 @@
+วิธีอัปโหลดด่าน 3 เวอร์ชันลูกเล่นขึ้น GitHub Pages
+
+อัปโหลดไฟล์เหล่านี้เข้า Repository เดิม ar-farm-tool-hero
+- mission3.html
+- targets3.mind
+- target-card3.png
+- mission3-qr.png
+- warning.svg
+- demo3.html (ไม่จำเป็นก็ได้)
+
+ขั้นตอน
+1. เข้า Repository เดิมใน GitHub
+2. กด Add file > Upload files
+3. อัปโหลดไฟล์ทั้งหมดด้านบน
+4. กด Commit changes
+5. รอ GitHub Pages deploy อัตโนมัติ
+6. เปิดลิงก์:
+   https://chamchuree220538.github.io/ar-farm-tool-hero/mission3.html
+
+การใช้งานจริง
+1. สแกน QR บนการ์ด target-card3.png
+2. เปิดเว็บ AR
+3. อนุญาตใช้กล้อง
+4. ใช้กล้องส่องกลับมาที่การ์ดภารกิจที่ 3
+5. จะเห็นไอคอนเตือน AR และคำถามแบบมีลูกเล่น
