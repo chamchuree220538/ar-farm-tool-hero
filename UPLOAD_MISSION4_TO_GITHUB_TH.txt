@@ -1,0 +1,28 @@
+วิธีอัปโหลดด่าน 4 ขึ้น GitHub Pages
+
+ให้อัปโหลดไฟล์เหล่านี้เข้า Repository เดิม ar-farm-tool-hero
+- mission4.html
+- targets4.mind
+- target-card4.png
+- mission4-qr.png
+- watering-can.png
+- dry-plant.png
+- healthy-plant.png
+- demo4.html (ไม่จำเป็นก็ได้)
+
+ขั้นตอน
+1. เข้า Repository เดิมใน GitHub
+2. กด Add file > Upload files
+3. อัปโหลดไฟล์ทั้งหมดด้านบน
+4. กด Commit changes
+5. รอ GitHub Pages deploy อัตโนมัติ
+6. เปิดลิงก์:
+   https://chamchuree220538.github.io/ar-farm-tool-hero/mission4.html
+
+การใช้งานจริง
+1. สแกน QR บนการ์ด target-card4.png
+2. เปิดเว็บ AR
+3. อนุญาตใช้กล้อง
+4. ใช้กล้องส่องกลับมาที่การ์ดภารกิจที่ 4
+5. จะเห็นบัวรดน้ำ AR
+6. ถ้าตอบ B. บัวรดน้ำ ต้นไม้จะสดชื่นขึ้น
