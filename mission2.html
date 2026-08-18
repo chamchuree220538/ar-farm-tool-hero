@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2e7d32">
+<title>AR Farm Tool Hero - Mission 2 Fun</title>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(180deg,#8dd7ff 0%,#d9f5ff 35%,#effadc 100%)}
+a-scene{position:absolute;inset:0;width:100%;height:100%}
+#farm-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.cloud{position:absolute;background:rgba(255,255,255,.9);border-radius:40px;filter:blur(.2px);animation:floatCloud linear infinite}
+.cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}
+.cloud:before{width:42%;height:90%;left:12%;top:-35%}.cloud:after{width:36%;height:75%;right:14%;top:-25%}
+.c1{width:130px;height:42px;top:9%;left:-20%;animation-duration:28s}.c2{width:170px;height:52px;top:20%;left:-30%;animation-duration:38s;animation-delay:-12s}.c3{width:110px;height:36px;top:14%;left:-25%;animation-duration:32s;animation-delay:-7s}
+@keyframes floatCloud{from{transform:translateX(0)}to{transform:translateX(150vw)}}
+#grass{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(180deg,#79c655 0%,#51a93c 100%);clip-path:polygon(0 45%,3% 30%,6% 46%,9% 26%,12% 44%,15% 28%,18% 47%,21% 25%,24% 44%,27% 32%,30% 50%,33% 29%,36% 45%,39% 24%,42% 48%,45% 27%,48% 46%,51% 28%,54% 49%,57% 25%,60% 43%,63% 30%,66% 50%,69% 25%,72% 44%,75% 29%,78% 46%,81% 27%,84% 48%,87% 24%,90% 42%,93% 30%,96% 47%,100% 34%,100% 100%,0 100%)}
+#soil{position:absolute;left:0;right:0;bottom:0;height:48px;background:#7b4b22}
+.leaf{position:absolute;font-size:24px;opacity:.75;animation:leafFloat linear infinite}
+.l1{left:8%;bottom:-10px;animation-duration:12s}.l2{left:24%;bottom:-20px;animation-duration:16s;animation-delay:-4s}.l3{left:52%;bottom:-18px;animation-duration:14s;animation-delay:-9s}.l4{left:77%;bottom:-8px;animation-duration:18s;animation-delay:-3s}.l5{left:90%;bottom:-26px;animation-duration:15s;animation-delay:-11s}
+@keyframes leafFloat{0%{transform:translateY(0) rotate(0deg)}50%{transform:translate(-12px,-45vh) rotate(20deg)}100%{transform:translate(14px,-92vh) rotate(-18deg);opacity:0}}
+.star{position:absolute;font-size:22px;animation:twinkle 2.2s ease-in-out infinite}
+.s1{top:16%;left:9%}.s2{top:12%;right:10%;animation-delay:.8s}.s3{top:30%;left:18%;animation-delay:1.4s}.s4{top:34%;right:18%;animation-delay:.4s}
+@keyframes twinkle{0%,100%{transform:scale(.9);opacity:.45}50%{transform:scale(1.25);opacity:1}}
+#topbar{position:fixed;z-index:20;top:0;left:0;right:0;padding:10px 12px;text-align:center;color:#fff;background:linear-gradient(180deg,rgba(28,114,56,.96),rgba(28,114,56,.74),transparent);pointer-events:none}
+#topbar .brand{font-weight:900;font-size:18px}.sub{font-size:12px;margin-top:2px}
+#scanwrap{position:fixed;inset:0;z-index:15;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#scanpanel{width:min(88vw,360px);padding:14px 14px 18px;border-radius:28px;background:rgba(255,255,255,.86);box-shadow:0 18px 40px rgba(0,0,0,.18);backdrop-filter:blur(4px);text-align:center;color:#234}
+#scanpanel h2{margin:0 0 8px;font-size:22px;color:#2b7a3d}#scanpanel p{margin:0;font-weight:800;line-height:1.45}
+#scanbox{width:min(66vw,250px);height:min(66vw,250px);margin:14px auto 10px;border:4px dashed #5fbf68;border-radius:22px;position:relative;animation:pulseBox 1.8s ease-in-out infinite}
+#scanbox:before,#scanbox:after{content:"";position:absolute;left:10px;right:10px;height:4px;background:#6dd36b;border-radius:999px}
+#scanbox:before{top:18px;animation:scanLine 2s linear infinite}#scanbox:after{display:none}
+.corner{position:absolute;width:28px;height:28px;border-color:#ffb300;border-style:solid}.cTL{left:-3px;top:-3px;border-width:5px 0 0 5px;border-top-left-radius:16px}.cTR{right:-3px;top:-3px;border-width:5px 5px 0 0;border-top-right-radius:16px}.cBL{left:-3px;bottom:-3px;border-width:0 0 5px 5px;border-bottom-left-radius:16px}.cBR{right:-3px;bottom:-3px;border-width:0 5px 5px 0;border-bottom-right-radius:16px}
+@keyframes scanLine{0%{transform:translateY(0)}100%{transform:translateY(180px)}}
+@keyframes pulseBox{0%,100%{transform:scale(1);box-shadow:0 0 0 rgba(95,191,104,0)}50%{transform:scale(1.02);box-shadow:0 0 20px rgba(95,191,104,.28)}}
+.tipchip{display:inline-block;margin-top:8px;padding:8px 12px;border-radius:999px;background:#ecf8e5;font-weight:900;color:#2c6d37;border:2px solid #9bd191}
+#quiz{display:none;position:fixed;z-index:30;left:50%;bottom:16px;transform:translateX(-50%);width:min(94vw,530px);background:rgba(255,255,255,.97);border:3px solid #65b25b;border-radius:24px;padding:15px;box-shadow:0 16px 42px rgba(0,0,0,.35)}
+#quiz h1{margin:0;text-align:center;color:#28733b;font-size:21px}.quizsub{text-align:center;color:#756141;font-size:13px;margin:4px 0 10px}.q{background:#fff4ca;border:2px solid #f3c345;border-radius:16px;padding:12px;text-align:center;color:#27517a;font-size:18px;font-weight:900;line-height:1.5}
+.answers{display:grid;gap:8px;margin-top:10px}button{border:0;border-radius:14px;padding:12px 14px;font-size:17px;font-weight:900;cursor:pointer}.answer{background:#edf8eb;color:#245f35;border:2px solid #9bd191}#speak{width:100%;margin-top:10px;background:#e8f1ff;color:#245386;border:2px solid #a7c8f3}
+#feedback{display:none;margin-top:10px;border-radius:14px;padding:11px;text-align:center;font-weight:900;font-size:17px}#feedback.correct{display:block;background:#dff5da;color:#1d6b31;border:2px solid #7bc96f}#feedback.wrong{display:block;background:#fff0db;color:#9a4d00;border:2px solid #f0b258}#retry{display:none;width:100%;margin-top:8px;background:#fff0b4;color:#6e5500;border:2px solid #f2ce44}
+#success{display:none;position:fixed;z-index:40;left:50%;top:22%;transform:translate(-50%,-50%);width:170px;height:170px;border-radius:50%;background:white;border:5px solid #f1c232;align-items:center;justify-content:center;text-align:center;color:#2e7d32;font-weight:900;font-size:18px;box-shadow:0 15px 50px rgba(0,0,0,.35)}#success span{display:block;font-size:58px;line-height:1}
+#confetti{display:none;position:fixed;inset:0;z-index:39;pointer-events:none;overflow:hidden}.conf{position:absolute;top:-20px;width:12px;height:22px;border-radius:4px;animation:fall 2.4s linear forwards}.cf1{left:12%;background:#ffd54f}.cf2{left:22%;background:#81c784;animation-delay:.15s}.cf3{left:35%;background:#4fc3f7;animation-delay:.05s}.cf4{left:50%;background:#ff8a65;animation-delay:.2s}.cf5{left:61%;background:#ffeb3b;animation-delay:.08s}.cf6{left:74%;background:#ba68c8;animation-delay:.17s}.cf7{left:86%;background:#aed581;animation-delay:.02s}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(540deg);opacity:0}}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div id="farm-bg">
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <div class="leaf l1">🍃</div><div class="leaf l2">🍃</div><div class="leaf l3">🌿</div><div class="leaf l4">🍃</div><div class="leaf l5">🌱</div>
+  <div class="star s1">⭐</div><div class="star s2">⭐</div><div class="star s3">✨</div><div class="star s4">✨</div>
+  <div id="grass"></div><div id="soil"></div>
+</div>
+
+<div id="topbar"><div class="brand">🌱 AR Farm Tool Hero</div><div class="sub">ภารกิจที่ 2 : จับคู่ให้ถูก!</div></div>
+
+<div id="scanwrap">
+  <div id="scanpanel">
+    <h2>สแกนการ์ดภารกิจ</h2>
+    <div id="scanbox">
+      <div class="corner cTL"></div><div class="corner cTR"></div><div class="corner cBL"></div><div class="corner cBR"></div>
+    </div>
+    <p>ส่องกล้องไปที่การ์ด <b>ภารกิจที่ 2</b><br>แล้วช่วยน้องต้นกล้าเลือกเครื่องมือให้ถูกนะ</p>
+    <div class="tipchip">กำลังค้นหาการ์ด...</div>
+  </div>
+</div>
+
+<div id="quiz">
+  <h1>⭐ ภารกิจที่ 2 : จับคู่ให้ถูก!</h1>
+  <div class="quizsub">เลือกเครื่องมือให้เหมาะกับงาน</div>
+  <div class="q">น้องต้นกล้าต้องการปลูกต้นกล้า<br>ควรเลือกเครื่องมืออะไร?</div>
+  <button id="speak">🔊 ฟังคำถาม</button>
+  <div class="answers">
+    <button class="answer" data-a="A">A. บัวรดน้ำ</button>
+    <button class="answer" data-a="B">B. ช้อนปลูก</button>
+    <button class="answer" data-a="C">C. คราด</button>
+  </div>
+  <div id="feedback"></div>
+  <button id="retry">ลองอีกครั้ง</button>
+</div>
+
+<div id="confetti">
+  <div class="conf cf1"></div><div class="conf cf2"></div><div class="conf cf3"></div><div class="conf cf4"></div><div class="conf cf5"></div><div class="conf cf6"></div><div class="conf cf7"></div>
+</div>
+<div id="success"><div><span>⭐</span>เก่งมาก!<br>ได้ 2 ดาว</div></div>
+
+<a-scene
+  mindar-image="imageTargetSrc: ./targets2.mind; autoStart: true; uiScanning: no; uiLoading: yes; uiError: yes;"
+  color-space="sRGB"
+  renderer="colorManagement:true, physicallyCorrectLights"
+  vr-mode-ui="enabled:false"
+  device-orientation-permission-ui="enabled:false"
+  embedded>
+  <a-assets><img id="trowel" src="./trowel.svg"></a-assets>
+  <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
+  <a-entity id="target2" mindar-image-target="targetIndex: 0">
+    <a-circle color="#fff5bd" opacity=".82" radius=".38" position="0 0 .04"></a-circle>
+    <a-image src="#trowel" position="0 0 .12" width=".55" height=".82"
+      animation="property:position;to:0 .055 .18;dur:800;easing:easeInOutSine;loop:true;dir:alternate"></a-image>
+    <a-ring color="#ffa726" radius-inner=".41" radius-outer=".44" position="0 0 .05"
+      animation="property:rotation;to:0 0 360;dur:6500;easing:linear;loop:true"></a-ring>
+    <a-ring color="#fff176" radius-inner=".32" radius-outer=".34" position="0 0 .05"
+      animation="property:scale;to:1.12 1.12 1.12;dur:1100;easing:easeInOutSine;loop:true;dir:alternate"></a-ring>
+  </a-entity>
+</a-scene>
+
+<script>
+const target=document.querySelector('#target2');
+const quiz=document.querySelector('#quiz');
+const scanwrap=document.querySelector('#scanwrap');
+const feedback=document.querySelector('#feedback');
+const retry=document.querySelector('#retry');
+const success=document.querySelector('#success');
+const confetti=document.querySelector('#confetti');
+const answers=document.querySelectorAll('.answer');
+const speak=document.querySelector('#speak');
+const voice='น้องต้นกล้าต้องการปลูกต้นไม้ต้นเล็ก หนูช่วยเลือกเครื่องมือที่เหมาะสมให้หน่อยนะ';
+
+target.addEventListener('targetFound',()=>{
+  scanwrap.classList.add('hidden');
+  quiz.style.display='block';
+});
+
+target.addEventListener('targetLost',()=>{
+  if(!feedback.classList.contains('correct')){
+    quiz.style.display='none';
+    scanwrap.classList.remove('hidden');
+  }
+});
+
+function reset(){feedback.className='';feedback.style.display='none';feedback.textContent='';retry.style.display='none';answers.forEach(x=>x.disabled=false);} 
+function celebrate(){
+  confetti.style.display='block';
+  success.style.display='flex';
+  setTimeout(()=>{confetti.style.display='none';success.style.display='none';},2400);
+}
+
+answers.forEach(btn=>btn.addEventListener('click',()=>{
+  if(btn.dataset.a==='B'){
+    feedback.className='correct';
+    feedback.textContent='🎉 ถูกต้อง! ช้อนปลูกใช้ขุดหลุมเล็กเพื่อปลูกต้นกล้า';
+    answers.forEach(x=>x.disabled=true);
+    celebrate();
+    if('vibrate' in navigator) navigator.vibrate([80,50,80]);
+  }else{
+    feedback.className='wrong';
+    feedback.textContent='💡 ยังไม่ถูกนะ ลองคิดว่าเครื่องมือใดเหมาะสำหรับปลูกต้นกล้า';
+    retry.style.display='block';
+    if('vibrate' in navigator) navigator.vibrate(80);
+  }
+}));
+
+retry.addEventListener('click',reset);
+speak.addEventListener('click',()=>{
+  if(!('speechSynthesis' in window)){alert(voice);return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(voice);
+  u.lang='th-TH';u.rate=.88;speechSynthesis.speak(u);
+});
+</script>
+</body>
+</html>

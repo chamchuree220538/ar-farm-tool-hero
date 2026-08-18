@@ -1,0 +1,25 @@
+วิธีอัปโหลดด่าน 2 เวอร์ชันลูกเล่นขึ้น GitHub Pages
+
+อัปโหลดไฟล์เหล่านี้เข้า Repository เดิม ar-farm-tool-hero
+- mission2.html
+- targets2.mind
+- target-card2.png
+- mission2-qr.png
+- trowel.svg
+- demo2.html (ไม่จำเป็นก็ได้)
+
+ขั้นตอน
+1. เข้า Repository เดิมใน GitHub
+2. กด Add file > Upload files
+3. อัปโหลดไฟล์ทั้งหมดด้านบน
+4. กด Commit changes
+5. รอ GitHub Pages deploy อัตโนมัติ
+6. เปิดลิงก์:
+   https://chamchuree220538.github.io/ar-farm-tool-hero/mission2.html
+
+การใช้งานจริง
+1. สแกน QR บนการ์ด target-card2.png
+2. เปิดเว็บ AR
+3. อนุญาตใช้กล้อง
+4. ใช้กล้องส่องกลับมาที่การ์ดภารกิจที่ 2
+5. จะเห็นช้อนปลูก AR และคำถามแบบมีลูกเล่น

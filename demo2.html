@@ -1,0 +1,12 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission 2 Demo</title><style>
+body{font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:#edf8e9;padding:22px;color:#234;margin:0}
+.card{max-width:520px;margin:auto;background:#fff;border:3px solid #69b45e;border-radius:24px;padding:18px;box-shadow:0 12px 35px #0002}
+h1{text-align:center;color:#267642}.q{background:#fff5cc;border:2px solid #f1c232;border-radius:16px;padding:16px;font-size:20px;font-weight:900;text-align:center}
+button{width:100%;margin-top:9px;padding:12px;border-radius:14px;border:2px solid #9ad18f;background:#eaf7e8;font-size:18px;font-weight:850}
+#f{display:none;margin-top:12px;padding:12px;border-radius:14px;text-align:center;font-weight:900}
+</style></head><body><div class="card"><h1>🌱 AR Farm Tool Hero</h1>
+<div class="q">น้องต้นกล้าต้องการปลูกต้นกล้า<br>ควรเลือกเครื่องมืออะไร?</div>
+<button onclick="ans('A')">A. บัวรดน้ำ</button><button onclick="ans('B')">B. ช้อนปลูก</button><button onclick="ans('C')">C. คราด</button><div id="f"></div></div>
+<script>function ans(x){const f=document.getElementById('f');f.style.display='block';if(x==='B'){f.style.background='#dcf5d7';f.style.color='#1d6b31';f.innerHTML='🎉 ถูกต้อง!<br>ช้อนปลูกใช้ขุดหลุมเล็กเพื่อปลูกต้นกล้า';}else{f.style.background='#fff0db';f.style.color='#9a4d00';f.innerHTML='💡 ยังไม่ถูกนะ ลองอีกครั้ง';}}</script>
+</body></html>
