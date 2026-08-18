@@ -1,0 +1,15 @@
+แก้ปัญหารูป AR ขึ้นเป็นสี่เหลี่ยมดำบน iPhone/Safari
+
+สาเหตุ:
+ไฟล์ SVG บางครั้งถูก Safari/WebGL แสดงเป็นแผ่นสีดำเมื่อใช้เป็น texture ใน A-Frame
+
+วิธีแก้:
+ให้อัปโหลด 2 ไฟล์นี้ทับของเดิมใน GitHub Repository:
+1) mission3.html
+2) warning.png
+
+จากนั้นกด Commit changes และรอ GitHub Pages อัปเดตประมาณ 1-3 นาที
+แล้วเปิด:
+https://chamchuree220538.github.io/ar-farm-tool-hero/mission3.html
+
+ไม่จำเป็นต้องสร้าง targets3.mind ใหม่
