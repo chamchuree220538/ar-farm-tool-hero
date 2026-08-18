@@ -1,0 +1,14 @@
+วิธีอัปโหลดด่าน 5 ขึ้น GitHub Pages
+
+ให้อัปโหลดไฟล์เหล่านี้เข้า Repository เดิม ar-farm-tool-hero
+- mission5.html
+- targets5.mind
+- target-card5.png
+- mission5-qr.png
+- toolbox.png
+- messy-tools.png
+- tidy-tools.png
+- demo5.html (ไม่จำเป็นก็ได้)
+
+เปิดใช้งานที่:
+https://chamchuree220538.github.io/ar-farm-tool-hero/mission5.html
